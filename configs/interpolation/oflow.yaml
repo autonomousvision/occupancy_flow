@@ -1,0 +1,23 @@
+data:
+  input_type: end_pointclouds
+  input_pointcloud_n: 10000
+  length_sequence: 30
+  input_pointcloud_noise: 0.
+model:
+  encoder_temporal: pointnet_2stream
+  decoder: null
+  encoder: null
+  loss_corr: true
+  loss_corr_bw: true
+  loss_recon: false
+training:
+  batch_size: 8
+  out_dir:  out/interpolation/oflow
+  model_selection_metric: l2
+  model_selection_mode: minimize
+generation:
+  mesh_color: false
+  n_time_steps: 30
+  interpolate: true
+test:
+  eval_mesh_iou: false

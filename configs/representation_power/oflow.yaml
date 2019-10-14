@@ -1,0 +1,19 @@
+method: oflow
+data:
+  input_type: null
+  train_split: overfit
+  val_split: overfit
+  test_split: overfit
+  n_files_per_sequence: 50
+  length_sequence: 50
+model:
+  decoder: simple
+  encoder: null
+  encoder_temporal: null
+  c_dim: 0
+  velocity_field_kwargs:
+    hidden_size: 128
+training:
+  out_dir:  out_camera_ready/representation_power/oflow
+generation:
+  n_time_steps: 50

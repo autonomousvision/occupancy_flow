@@ -1,0 +1,16 @@
+out
+.vscode
+.pytest_cache
+.cache
+*.pyc
+*.pt
+*.so
+*.o
+*.prof
+.nfs*
+im2mesh/utils/libmcubes/mcubes.cpp
+im2mesh/utils/libsimplify/simplify_mesh.cpp
+im2mesh/utils/libsimplify/build
+data/Humans.zip
+data/Humans/D-FAUST
+data/Humans/D-FAUST_test

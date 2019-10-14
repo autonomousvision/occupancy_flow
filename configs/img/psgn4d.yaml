@@ -1,0 +1,21 @@
+method: psgn4d
+data:
+  input_type: img_seq
+model:
+  decoder: simple
+  encoder: conv_3D
+  decoder_kwargs:
+    hidden_size: 256
+    legacy: true
+  c_dim: 256
+training:
+  out_dir:  out/img/psgn4d
+  model_selection_metric: chamfer
+  model_selection_mode: minimize
+test:
+  eval_mesh: false
+  eval_pointcloud: true
+generation:
+  generate_mesh: false
+  generate_pointcloud: true
+  mesh_color: false

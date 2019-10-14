@@ -1,0 +1,12 @@
+method: oflow
+model:
+  encoder_kwargs:
+    hidden_dim: 128
+  encoder_temporal_kwargs:
+    hidden_dim: 128
+  velocity_field_kwargs:
+    hidden_size: 128
+  c_dim: 128
+training:
+  out_dir:  out/pointcloud/oflow
+  n_eval_points: 10000

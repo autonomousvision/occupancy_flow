@@ -1,0 +1,15 @@
+method: psgn4d
+model:
+  decoder: simple
+  loss_corr: true
+training:
+  out_dir:  out/pointcloud/psgn4d_w_correspond
+  model_selection_metric: chamfer
+  model_selection_mode: minimize
+test:
+  eval_mesh: false
+  eval_pointcloud: true
+generation:
+  generate_mesh: false
+  generate_pointcloud: true
+  mesh_color: false

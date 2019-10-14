@@ -1,0 +1,5 @@
+method: oflow
+model:
+  loss_corr: true
+training:
+  out_dir:  out/pointcloud/oflow_w_correspond

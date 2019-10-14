@@ -1,0 +1,7 @@
+inherit_from: configs/pointcloud/oflow_w_correspond_pretrained.yaml
+data:
+  classes: ['Demo']
+  test_split: null
+  offset_sequence: 0
+training:
+  out_dir: out/demo

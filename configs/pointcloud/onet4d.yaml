@@ -1,0 +1,8 @@
+method: onet4d
+training:
+  out_dir: out/pointcloud/onet4d
+test:
+  eval_mesh_correspondences: false
+  mesh_color: false
+generation:
+  padding: 0.5

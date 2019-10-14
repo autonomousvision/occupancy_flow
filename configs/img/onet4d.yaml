@@ -1,0 +1,17 @@
+method: onet4d
+data:
+  input_type: img_seq
+model:
+  encoder_temporal: conv_3D
+  decoder_kwargs:
+    hidden_size: 256
+    legacy: true
+  c_dim: 256
+training:
+  out_dir: out/img/onet4d
+generation:
+  padding: 0.5
+  mesh_color: false
+test:
+  eval_mesh_correspondences: false
+  mesh_color: false

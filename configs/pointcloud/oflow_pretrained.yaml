@@ -1,0 +1,14 @@
+method: oflow
+model:
+  encoder_kwargs:
+    hidden_dim: 128
+  encoder_temporal_kwargs:
+    hidden_dim: 128
+  velocity_field_kwargs:
+    hidden_size: 128
+  c_dim: 128
+training:
+  out_dir:  out/pointcloud/oflow_pretrained
+  n_eval_points: 10000
+test:
+  model_file: https://s3.eu-central-1.amazonaws.com/avg-projects/occupancy_flow/models/pointcloud/oflow_model-3ff330bc.pt

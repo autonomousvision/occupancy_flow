@@ -1,0 +1,6 @@
+model:
+  loss_corr: true
+training:
+  out_dir:  out/pointcloud/oflow_w_correspond_pretrained
+test:
+  model_file: https://s3.eu-central-1.amazonaws.com/avg-projects/occupancy_flow/models/pointcloud/oflow_w_correspond_model-13c0a3ed.pt

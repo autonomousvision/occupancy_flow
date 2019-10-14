@@ -1,0 +1,31 @@
+method: oflow
+data:
+  input_pointcloud_n: 4000
+  input_pointcloud_noise: 0.
+  train_split: train_generative
+  test_split: train_generative
+model:
+  encoder_latent: pointnet
+  encoder_latent_temporal: pointnet
+  encoder_temporal: null
+  encoder: null
+  decoder: simple
+  c_dim: 0
+  z_dim: 128
+  encoder_latent_temporal_kwargs:
+    hidden_dim: 128
+    dim: 51
+  encoder_latent_kwargs:
+    hidden_dim: 128
+    dim: 3
+  velocity_field_kwargs:
+    hidden_size: 128
+    n_blocks: 3
+  loss_corr: true
+training:
+  out_dir:  out/generative/oflow
+  n_eval_points: 10000
+generation:
+  use_sampling: true
+  fix_z: true
+  fix_zt: false
