@@ -1,8 +1,8 @@
 # Occupancy Flow 
 <div style="text-align: center">
-<img src="animations/pointcloud_output.gif" width="256"/>
-<img src="animations/shape_interpolation.gif" width="256" />
-<img src="animations/image_output.gif" width="256" />
+<img src="animations/field_jumping_jacks.gif" width="256"/>
+<img src="animations/field_leg_jump.gif" width="256" />
+<img src="animations/field_shake_hips.gif" width="256" />
 </div>
 
 This repository contains the code for the project [Occupancy Flow - 4D Reconstruction by Learning Particle Dynamics](https://avg.is.tuebingen.mpg.de/publications/niemeyer2019iccv).
@@ -82,14 +82,15 @@ The argument has to be the folder to which you have extracted the mesh data (the
 
 ## Usage
 
-<div style="text-align: center">
-<img src="animations/interpolation.gif" width="400"/>
-<img src="animations/motion_transfer.gif" width="400"/>
-</div>
-
 When you have installed all dependencies and obtained the preprocessed data, you are ready to run our pre-trained models and train new models from scratch.
 
 ### Generation
+
+<div style="text-align: center">
+<img src="animations/input_full.gif" width="256"/>
+<img src="animations/oflow_full.gif" width="256"/>
+</div>
+
 To start the normal mesh generation process using a trained model, use
 
 ```
@@ -111,6 +112,11 @@ You can find the outputs in the `out/` folder.
 Please note that the config files *_pretrained.yaml are only for generation, not for training new models: when these configs are used for training, the model will be trained from scratch, but during inference our code will still use the pretrained model.
 
 ### Generation - Generative Tasks
+
+<div style="text-align: center">
+<img src="animations/interpolation.gif" width="400"/>
+<img src="animations/motion_transfer.gif" width="400"/>
+</div>
 
 For model-specific latent space interpolations and motion transfers, you first have to run
 ```
