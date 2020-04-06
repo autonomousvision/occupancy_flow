@@ -46,7 +46,8 @@ fields = {
 if cfg['test']['eval_mesh_iou']:
     fields['points'] = data.PointsSubseqField(
         cfg['data']['points_iou_seq_folder'], all_steps=True,
-        seq_len=cfg['data']['length_sequence'])
+        seq_len=cfg['data']['length_sequence'],
+        unpackbits=cfg['data']['points_unpackbits'])
 
 
 print('Test split: ', cfg['data']['test_split'])
