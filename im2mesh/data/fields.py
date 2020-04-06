@@ -133,8 +133,13 @@ class PointsSubseqField(Field):
         t_list = []
         for i, f in enumerate(files):
             points_dict = np.load(f)
+            
             # Load points
-            points = points_dict['points'].astype(np.float32)
+            points = points_dict['points']
+            if (points.dtype == np.float16):
+                # break symmetry (nec. for some version?)
+                points += 1e-4 * np.random.randn(*points.shape)
+            points = points.astype(np.float32)
             occupancies = points_dict['occupancies']
             if self.unpackbits:
                 occupancies = np.unpackbits(occupancies)[:points.shape[0]]
