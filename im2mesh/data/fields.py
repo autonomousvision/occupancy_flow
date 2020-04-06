@@ -138,6 +138,7 @@ class PointsSubseqField(Field):
             points = points_dict['points']
             if (points.dtype == np.float16):
                 # break symmetry (nec. for some version?)
+                points = points.astype(np.float32)
                 points += 1e-4 * np.random.randn(*points.shape)
             points = points.astype(np.float32)
             occupancies = points_dict['occupancies']
