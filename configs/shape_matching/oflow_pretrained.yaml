@@ -1,0 +1,25 @@
+data:
+  input_type: end_pointclouds
+  input_pointcloud_n: 10000
+  input_pointcloud_noise: 0.
+  input_pointcloud_corresponding: False
+model:
+  encoder_temporal: pointnet_2stream
+  decoder: null
+  encoder: null
+  loss_corr: true
+  loss_recon: false
+training:
+  batch_size: 8
+  out_dir:  out/shape_matching/oflow
+  model_selection_metric: l2
+  model_selection_mode: minimize
+generation:
+  mesh_color: false
+  correspondence: true
+  only_end_time_points: true
+test:
+  eval_mesh_iou: false
+  project_to_final_mesh: true
+  eval_only_end_time_steps: true
+  model_file: https://s3.eu-central-1.amazonaws.com/avg-projects/occupancy_flow/models/shape_matching/oflow_model-cb3b57e3.pt
