@@ -11,7 +11,7 @@ model:
   loss_recon: false
 training:
   batch_size: 8
-  out_dir:  out/shape_matching/oflow
+  out_dir:  out/shape_matching/oflow_pretrained
   model_selection_metric: l2
   model_selection_mode: minimize
 generation:
