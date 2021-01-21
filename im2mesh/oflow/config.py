@@ -312,6 +312,7 @@ def get_data_fields(mode, cfg):
     pcl_folder = cfg['data']['pointcloud_seq_folder']
     mesh_folder = cfg['data']['mesh_seq_folder']
     generate_interpolate = cfg['generation']['interpolate']
+    correspondence = cfg['generation']['correspondence']
     unpackbits = cfg['data']['points_unpackbits']
 
     # Transformation
@@ -343,7 +344,7 @@ def get_data_fields(mode, cfg):
         fields['points_mesh'] = pts_corr_field(pcl_folder,
                                                transform=transf_pcl_val,
                                                seq_len=seq_len)
-    elif mode == 'test' and generate_interpolate:
+    elif mode == 'test' and (generate_interpolate or correspondence):
         fields['mesh'] = data.MeshSubseqField(mesh_folder, seq_len=seq_len,
                                               only_end_points=True)
     return fields
