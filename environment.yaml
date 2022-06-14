@@ -10,6 +10,7 @@ dependencies:
   - numpy-base=1.15.4
   - matplotlib=3.0.3
   - matplotlib-base=3.0.3
+  - mkl=2019
   - pandas=0.23.4
   - pillow=5.3.0
   - pyembree=0.1.4
