@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:1.0-cuda10.0-cudnn7-runtime
+FROM pytorch/pytorch:1.0-cuda10.0-cudnn7-devel
 
 # conda env in docker ref: https://qiita.com/junkor-1011/items/cd7c0e626aedc335011d
 
@@ -14,6 +14,7 @@ RUN apt-get clean && \
     bash \
     sudo \
     git \
+    build-essential \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -40,7 +41,7 @@ RUN mkdir -p $CONDA_DIR && \
     chown $USER_NAME:$USER_UID $CONDA_TMP_DIR
 
 # import yaml
-ARG CONDA_YAML="./environment.yaml"
+ARG CONDA_YAML="./environment_rtx3070.yaml"
 COPY $CONDA_YAML /tmp/conda_packages.yml
 USER ${USER_NAME}
 WORKDIR $HOME
@@ -59,5 +60,3 @@ RUN cd /tmp && \
     rm -rf $HOME/.cache/* && \
     rm -rf $CONDA_TMP_DIR/*
 
-# RUN cd $HOME && \
-#     python setup.py build_ext --inplace
