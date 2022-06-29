@@ -19,6 +19,8 @@ If you find our code or paper useful, please consider citing
     }
 
 ## Installation
+### Set up the environment
+#### method 1: local install
 First you have to make sure that you have all dependencies in place. The simplest way to do so, is to use [anaconda](https://www.anaconda.com/).
 
 You can create and activate an anaconda environment called `oflow` using
@@ -27,6 +29,15 @@ You can create and activate an anaconda environment called `oflow` using
 conda env create -f environment.yaml
 conda activate oflow
 ```
+
+#### method 2: using docker
+Run below command. It will set up everything and share the output with host machine.
+```
+docker compose build
+docker compose run app bash
+```
+
+### Set up Occupancy Flow 
 Next, compile the extension modules. You can do this via
 ```
 python setup.py build_ext --inplace

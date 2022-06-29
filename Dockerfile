@@ -14,38 +14,23 @@ RUN apt-get clean && \
     bash \
     sudo \
     git \
-    build-essential \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-# create user
-ARG USER_NAME=user
-ARG USER_UID=1000
-ARG PASSWD=password
-RUN useradd -m -s /bin/bash -u ${USER_UID} ${USER_NAME} && \
-    gpasswd -a ${USER_NAME} sudo && \
-    echo "${USER_NAME}:${PASSWD}" | chpasswd && \
-    echo "${USER_NAME} ALL=(ALL) ALL" >> /etc/sudoers && \
-    chmod g+w /etc/passwd
 
 # set up enviroment for conda
 ENV CONDA_DIR=/opt/conda \
     CONDA_TMP_DIR=/tmp/conda \
-    HOME=/home/$USER_NAME \
     SHELL=/bin/bash
 # to avoid the error: CondaValueError: prefix already exists: /opt/conda
 RUN rm -rf $CONDA_DIR
 RUN mkdir -p $CONDA_DIR && \
-    mkdir -p $CONDA_TMP_DIR && \
-    chown $USER_NAME:$USER_UID $CONDA_DIR && \
-    chown $USER_NAME:$USER_UID $CONDA_TMP_DIR
-
+    mkdir -p $CONDA_TMP_DIR
+    
 # import yaml
-ARG CONDA_YAML="./environment_rtx3070.yaml"
+ARG CONDA_YAML="./environment.yaml"
 COPY $CONDA_YAML /tmp/conda_packages.yml
-USER ${USER_NAME}
-WORKDIR $HOME
-COPY --chown=${USER_NAME} . .
+WORKDIR /work
+COPY . .
 
 # create conda env using miniconda
 ARG MINICONDA_VERSION=py37_4.8.3-Linux-x86_64
@@ -57,6 +42,8 @@ RUN cd /tmp && \
     /bin/bash Miniconda3-${MINICONDA_VERSION}.sh -f -b -p $CONDA_TMP_DIR && \
     rm Miniconda3-${MINICONDA_VERSION}.sh && \
     $CONDA_TMP_DIR/bin/conda env create -f /tmp/conda_packages.yml -p $CONDA_DIR && \
-    rm -rf $HOME/.cache/* && \
+    rm -rf /home/.cache/* && \
     rm -rf $CONDA_TMP_DIR/*
 
+# to write outputs and share with the host user
+RUN chown 1000:1000 /home
