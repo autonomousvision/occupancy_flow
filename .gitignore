@@ -14,4 +14,5 @@ im2mesh/utils/libsimplify/build
 data/Humans.zip
 data/Humans/D-FAUST
 data/Humans/D-FAUST_test
+build/
 *~

@@ -1,5 +1,8 @@
-FROM pytorch/pytorch:1.0-cuda10.0-cudnn7-devel
+FROM pytorch/pytorch:1.7.0-cuda11.0-cudnn8-devel
 
+# update nvidia key
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
 # conda env in docker ref: https://qiita.com/junkor-1011/items/cd7c0e626aedc335011d
 
 # system update & package install
@@ -15,6 +18,7 @@ RUN apt-get clean && \
     sudo \
     git \
     build-essential \
+    gcc \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -28,7 +32,7 @@ RUN mkdir -p $CONDA_DIR && \
     mkdir -p $CONDA_TMP_DIR
     
 # import yaml
-ARG CONDA_YAML="./environment.yaml"
+ARG CONDA_YAML="./environment_cuda11.yaml"
 COPY $CONDA_YAML /tmp/conda_packages.yml
 WORKDIR /work
 COPY . .
