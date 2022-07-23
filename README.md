@@ -35,6 +35,7 @@ Run below command. It will set up everything and share the output with host mach
 ```
 docker compose build
 docker compose run app bash
+(or in case you have cuda11 compatible gpu) docker compose run cuda11app bash
 ```
 
 ### Set up Occupancy Flow 
