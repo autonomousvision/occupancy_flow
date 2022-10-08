@@ -4,7 +4,7 @@ except ImportError:
     from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
-from torch.utils.cpp_extension import BuildExtension
+from Cython.Distutils import build_ext
 import numpy
 
 
@@ -22,6 +22,7 @@ pykdtree = Extension(
     language='c',
     extra_compile_args=['-std=c99', '-O3', '-fopenmp'],
     extra_link_args=['-lgomp'],
+    include_dirs=[numpy_include_dir]
 )
 
 # mcubes (marching cubes algorithm)
@@ -43,7 +44,8 @@ triangle_hash_module = Extension(
     sources=[
         'im2mesh/utils/libmesh/triangle_hash.pyx'
     ],
-    libraries=['m']  # Unix-like specific
+    libraries=['m'],  # Unix-like specific
+    include_dirs=[numpy_include_dir]
 )
 
 # mise (efficient mesh extraction)
@@ -52,6 +54,7 @@ mise_module = Extension(
     sources=[
         'im2mesh/utils/libmise/mise.pyx'
     ],
+    include_dirs=[numpy_include_dir]
 )
 
 # simplify (efficient mesh simplification)
@@ -59,7 +62,8 @@ simplify_mesh_module = Extension(
     'im2mesh.utils.libsimplify.simplify_mesh',
     sources=[
         'im2mesh/utils/libsimplify/simplify_mesh.pyx'
-    ]
+    ],
+    include_dirs=[numpy_include_dir]
 )
 
 # voxelization (efficient mesh voxelization)
@@ -68,7 +72,8 @@ voxelize_module = Extension(
     sources=[
         'im2mesh/utils/libvoxelize/voxelize.pyx'
     ],
-    libraries=['m']  # Unix-like specific
+    libraries=['m'],  # Unix-like specific
+    include_dirs=[numpy_include_dir]
 )
 
 # Gather all extension modules
@@ -83,6 +88,6 @@ ext_modules = [
 setup(
     ext_modules=cythonize(ext_modules),
     cmdclass={
-        'build_ext': BuildExtension
+        'build_ext': build_ext
     }
 )
